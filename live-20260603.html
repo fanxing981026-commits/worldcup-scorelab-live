@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="zh-CN" class="dark scroll-smooth">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ScoreLab | 2026 世界杯比分概率预测</title>
+    <meta name="description" content="ScoreLab 是一个合规、透明、可解释的 2026 世界杯比分概率预测工具，基于 FIFA 排名、攻防、状态、伤停和泊松比分矩阵。">
+    <meta name="theme-color" content="#0A3D2E">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ScoreLab | 2026 World Cup Score Probability">
+    <meta property="og:description" content="Professional, transparent and compliant score probability forecasting for the 2026 Canada/Mexico/USA World Cup.">
+    <meta property="og:image" content="./assets/scorelab-hero-2026.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="./manifest.json?v=20260603-2">
+    <script>
+      tailwind = {
+        config: {
+          darkMode: 'class',
+          theme: {
+            extend: {
+              colors: {
+                evergreen: { 900: '#0A3D2E', 800: '#145C44', 600: '#1A8C66' },
+                graphite: { 950: '#070D0A', 900: '#111713', 800: '#1F2521', 700: '#2A2F2B' },
+                gold: { 500: '#D4AF37', 300: '#E8C670' },
+                cyan: { 400: '#22D3EE' }
+              },
+              fontFamily: {
+                sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                display: ['Satoshi', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+              },
+              borderRadius: {
+                '2xl': '1rem',
+                '3xl': '1.5rem'
+              },
+              boxShadow: {
+                glow: '0 0 42px rgba(34, 211, 238, .18)',
+                gold: '0 0 36px rgba(212, 175, 55, .18)'
+              }
+            }
+          }
+        }
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <style>
+      :root { color-scheme: dark; }
+      body {
+        background:
+          radial-gradient(circle at 20% 10%, rgba(34, 211, 238, .10), transparent 26rem),
+          radial-gradient(circle at 84% 6%, rgba(212, 175, 55, .12), transparent 28rem),
+          linear-gradient(180deg, #070D0A 0%, #111713 46%, #070D0A 100%);
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: .045;
+        background-image:
+          linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255,255,255,.8) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(180deg, black, transparent 82%);
+      }
+      .glass {
+        background: rgba(31, 37, 33, .84);
+        border: 1px solid rgba(255,255,255,.10);
+        backdrop-filter: blur(18px);
+      }
+      .grass-lines {
+        background:
+          repeating-linear-gradient(90deg, rgba(20,92,68,.16) 0 34px, rgba(10,61,46,.10) 34px 68px),
+          linear-gradient(135deg, rgba(31,37,33,.92), rgba(10,61,46,.34));
+      }
+      .team-card[aria-selected="true"] {
+        border-color: rgba(212, 175, 55, .85);
+        box-shadow: 0 0 0 1px rgba(212, 175, 55, .25), 0 18px 48px rgba(212, 175, 55, .08);
+      }
+      .heat-cell {
+        transition: transform .2s ease, border-color .2s ease, filter .2s ease;
+      }
+      .heat-cell:hover {
+        transform: translateY(-2px) scale(1.015);
+        border-color: rgba(232, 198, 112, .75);
+        filter: brightness(1.12);
+      }
+      .drawer-open #paramDrawer { transform: translateX(0); }
+      .drawer-open #drawerOverlay { opacity: 1; pointer-events: auto; }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-white antialiased selection:bg-gold-500/30 selection:text-white">
+    <canvas id="fieldCanvas" class="fixed inset-0 z-0 opacity-60" aria-hidden="true"></canvas>
+
+    <header class="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-graphite-950/70 backdrop-blur-2xl">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <a href="#top" class="flex items-center gap-3" aria-label="ScoreLab 首页">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl border border-gold-500/40 bg-evergreen-900 text-gold-300 shadow-gold">SL</span>
+          <span>
+            <span class="block font-display text-lg font-black tracking-[-0.02em]">ScoreLab</span>
+            <span class="block text-xs font-semibold text-gold-300">2026 Canada/Mexico/USA</span>
+          </span>
+        </a>
+        <nav class="hidden items-center gap-1 text-sm font-semibold text-white/76 md:flex" aria-label="主导航">
+          <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#predictor">预测器</a>
+          <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#groups">分组</a>
+          <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#accuracy">准确性</a>
+          <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#parameters">参数</a>
+          <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#about">关于</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <button id="langToggle" class="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-bold text-white/80 hover:border-gold-500/50" type="button">中 / EN</button>
+          <button id="themeToggle" class="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-bold text-white/80 hover:border-gold-500/50" type="button" aria-label="切换主题">Dark</button>
+          <a class="hidden rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-bold text-white/80 hover:border-gold-500/50 sm:inline-flex" href="https://github.com/fanxing981026-commits/worldcup-scorelab-live" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top" class="relative z-10">
+      <section class="relative min-h-[85svh] overflow-hidden px-4 pt-28 sm:px-6 lg:px-8">
+        <div class="absolute inset-x-0 top-0 -z-10 h-[86svh] bg-[url('./assets/scorelab-hero-2026.png')] bg-cover bg-center opacity-48"></div>
+        <div class="absolute inset-x-0 top-0 -z-10 h-[86svh] bg-gradient-to-r from-graphite-950 via-graphite-950/86 to-graphite-950/30"></div>
+        <div class="mx-auto grid min-h-[calc(85svh-7rem)] max-w-7xl items-center gap-8 py-12 lg:grid-cols-[1.05fr_.95fr]">
+          <div class="hero-copy max-w-4xl">
+            <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-4 py-2 text-sm font-bold text-gold-300">
+              <span class="h-2 w-2 rounded-full bg-cyan-400 shadow-glow"></span>
+              最新公开快照 · 合规透明预测 · 非博彩
+            </div>
+            <h1 class="font-display text-[clamp(3rem,8vw,7.4rem)] font-black leading-[.9] tracking-[-0.055em]">
+              用可解释模型预测 2026 世界杯比分
+            </h1>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-white/72 sm:text-xl">
+              综合 FIFA 排名、攻防评分、近期状态、伤停、休息与东道主因素，以泊松比分矩阵输出胜平负、xG、比分热力图和置信度。
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#predictor" class="rounded-2xl bg-gold-500 px-6 py-4 text-sm font-black text-graphite-950 shadow-gold transition hover:-translate-y-0.5 hover:bg-gold-300">立即预测比赛</a>
+              <a href="#groups" class="rounded-2xl border border-white/10 bg-white/8 px-6 py-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:border-cyan-400/60">浏览 48 队分组</a>
+            </div>
+          </div>
+          <aside class="hero-card glass rounded-3xl p-5 shadow-2xl">
+            <div class="grass-lines rounded-2xl p-5">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="text-sm font-bold uppercase tracking-wide text-white/55">Live Model Snapshot</p>
+                  <p id="heroModelStatus" class="mt-2 text-4xl font-black tracking-[-0.04em]">Loading</p>
+                </div>
+                <span id="modelVersionBadge" class="rounded-full border border-gold-500/40 bg-gold-500/10 px-3 py-1 text-xs font-black text-gold-300">--</span>
+              </div>
+              <p id="heroFreshness" class="mt-4 text-sm leading-6 text-white/70">正在读取模型快照。</p>
+              <div class="mt-6 grid grid-cols-3 gap-3">
+                <div class="rounded-2xl bg-black/24 p-4"><p class="text-xs text-white/50">Teams</p><strong id="heroTeams" class="text-2xl">--</strong></div>
+                <div class="rounded-2xl bg-black/24 p-4"><p class="text-xs text-white/50">Groups</p><strong id="heroGroups" class="text-2xl">--</strong></div>
+                <div class="rounded-2xl bg-black/24 p-4"><p class="text-xs text-white/50">Fixtures</p><strong id="heroMatches" class="text-2xl">--</strong></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="predictor" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p class="text-sm font-black uppercase tracking-wide text-gold-300">Match Predictor</p>
+            <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em] sm:text-5xl">核心比分概率预测器</h2>
+          </div>
+          <div class="flex gap-2">
+            <button id="featuredBtn" class="rounded-2xl border border-white/10 bg-white/6 px-4 py-3 text-sm font-black text-white/80 hover:border-gold-500/50" type="button">载入揭幕战</button>
+            <button id="shareLinkBtn" class="rounded-2xl border border-cyan-400/30 bg-cyan-400/10 px-4 py-3 text-sm font-black text-cyan-400 hover:bg-cyan-400/15" type="button">分享链接</button>
+            <button id="shareImageBtn" class="rounded-2xl border border-gold-500/40 bg-gold-500/10 px-4 py-3 text-sm font-black text-gold-300 hover:bg-gold-500/15" type="button">生成图片</button>
+          </div>
+        </div>
+
+        <div class="grid gap-4 lg:grid-cols-[1fr_120px_1fr]">
+          <div class="team-picker glass rounded-3xl p-4">
+            <label class="text-xs font-black uppercase text-white/50" for="homeSearch">主队</label>
+            <input id="homeSearch" class="mt-3 w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 font-semibold outline-none transition focus:border-gold-500/60" placeholder="搜索球队 / FIFA code" autocomplete="off">
+            <div id="homeOptions" class="mt-3 grid max-h-80 gap-2 overflow-auto pr-1" role="listbox" aria-label="主队选择"></div>
+          </div>
+
+          <div class="hidden place-items-center lg:grid">
+            <div class="rounded-full border border-white/10 bg-white/5 px-5 py-4 text-xl font-black text-gold-300 shadow-gold">VS</div>
+          </div>
+
+          <div class="team-picker glass rounded-3xl p-4">
+            <label class="text-xs font-black uppercase text-white/50" for="awaySearch">客队</label>
+            <input id="awaySearch" class="mt-3 w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 font-semibold outline-none transition focus:border-gold-500/60" placeholder="搜索球队 / FIFA code" autocomplete="off">
+            <div id="awayOptions" class="mt-3 grid max-h-80 gap-2 overflow-auto pr-1" role="listbox" aria-label="客队选择"></div>
+          </div>
+        </div>
+
+        <div class="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-white/10 bg-white/[.04] p-4">
+          <label class="flex items-center gap-3 text-sm font-bold text-white/70"><input id="neutral" type="checkbox" class="h-5 w-5 accent-gold-500"> 按中立场计算</label>
+          <button id="predictBtn" class="rounded-2xl bg-gold-500 px-8 py-4 text-sm font-black text-graphite-950 shadow-gold transition hover:-translate-y-0.5 hover:bg-gold-300" type="button">生成预测</button>
+        </div>
+
+        <div id="resultPanel" class="mt-5 grid gap-5 opacity-0 lg:grid-cols-[1fr_.9fr]">
+          <section class="glass rounded-3xl p-5">
+            <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+              <div>
+                <p class="text-sm font-black uppercase tracking-wide text-white/45">Projected Match</p>
+                <h3 id="matchTitle" class="mt-1 text-3xl font-black tracking-[-0.04em]">--</h3>
+              </div>
+              <span id="confidencePill" class="w-fit rounded-full border border-gold-500/40 bg-gold-500/10 px-4 py-2 text-sm font-black text-gold-300">--</span>
+            </div>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-3">
+              <article class="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p class="text-sm text-white/52">主胜</p>
+                <strong id="homeWin" class="prob-number mt-1 block text-4xl font-black text-cyan-400">--</strong>
+                <div class="mt-3 h-2 overflow-hidden rounded-full bg-white/10"><i id="homeWinBar" class="block h-full w-0 rounded-full bg-gradient-to-r from-gold-500 to-cyan-400"></i></div>
+              </article>
+              <article class="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p class="text-sm text-white/52">平局</p>
+                <strong id="draw" class="prob-number mt-1 block text-4xl font-black text-gold-300">--</strong>
+                <div class="mt-3 h-2 overflow-hidden rounded-full bg-white/10"><i id="drawBar" class="block h-full w-0 rounded-full bg-gradient-to-r from-evergreen-600 to-gold-500"></i></div>
+              </article>
+              <article class="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p class="text-sm text-white/52">客胜</p>
+                <strong id="awayWin" class="prob-number mt-1 block text-4xl font-black text-cyan-400">--</strong>
+                <div class="mt-3 h-2 overflow-hidden rounded-full bg-white/10"><i id="awayWinBar" class="block h-full w-0 rounded-full bg-gradient-to-r from-gold-500 to-cyan-400"></i></div>
+              </article>
+            </div>
+
+            <div class="mt-5 grid gap-4 md:grid-cols-[.85fr_1.15fr]">
+              <div>
+                <p id="xgSummary" class="rounded-2xl border border-white/10 bg-white/[.04] p-4 text-sm font-bold text-white/70">xG --</p>
+                <div id="topScores" class="mt-3 grid grid-cols-2 gap-2"></div>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-black/16 p-4">
+                <div class="mb-3 flex items-center justify-between">
+                  <p class="text-sm font-black text-white/62">进球分布曲线</p>
+                  <p id="goalTrend" class="text-xs font-bold text-cyan-400">--</p>
+                </div>
+                <canvas id="goalsChart" height="190"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <section class="glass rounded-3xl p-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-black uppercase tracking-wide text-white/45">Score Heatmap</p>
+                <h3 class="mt-1 text-2xl font-black tracking-[-0.03em]">最可能比分矩阵</h3>
+              </div>
+              <span id="simulationSummary" class="rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-black text-cyan-400">10,000 sims</span>
+            </div>
+            <div id="heatmap" class="mt-5 grid grid-cols-5 gap-2" aria-label="比分概率热力图"></div>
+            <details class="mt-5 rounded-2xl border border-white/10 bg-black/16 p-4">
+              <summary class="cursor-pointer text-sm font-black text-gold-300">输入因子 breakdown</summary>
+              <div id="factorBreakdown" class="mt-4 grid gap-2"></div>
+            </details>
+          </section>
+        </div>
+      </section>
+
+      <section id="groups" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="mb-6 flex items-end justify-between gap-4">
+          <div>
+            <p class="text-sm font-black uppercase tracking-wide text-gold-300">Groups</p>
+            <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em]">48 队分组与强度</h2>
+          </div>
+          <div id="groupTabs" class="hidden flex-wrap gap-2 lg:flex"></div>
+        </div>
+        <div id="groupGrid" class="grid gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
+      </section>
+
+      <section id="accuracy" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
+          <div>
+            <p class="text-sm font-black uppercase tracking-wide text-gold-300">Accuracy Dashboard</p>
+            <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em]">准确性仪表盘</h2>
+            <p class="mt-4 max-w-xl text-white/64">显示模型当前使用的数据快照、回测 sanity check、输入完整度和下一次需要更新的关键数据。</p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <article class="glass rounded-3xl p-5"><p class="text-sm text-white/50">FIFA 排名日期</p><strong id="rankingFreshness" class="mt-2 block text-3xl font-black text-gold-300">--</strong><p id="rankingNext" class="mt-2 text-sm text-white/58">--</p></article>
+            <article class="glass rounded-3xl p-5"><p class="text-sm text-white/50">回测 Brier</p><strong id="brierScore" class="mt-2 block text-3xl font-black text-cyan-400">--</strong><p id="backtestSamples" class="mt-2 text-sm text-white/58">--</p></article>
+            <article class="glass rounded-3xl p-5"><p class="text-sm text-white/50">Top Pick</p><strong id="topPickAccuracy" class="mt-2 block text-3xl font-black text-cyan-400">--</strong><p class="mt-2 text-sm text-white/58">历史样本最高概率结果命中率</p></article>
+            <article class="glass rounded-3xl p-5"><p class="text-sm text-white/50">数据完整度</p><strong id="dataCompleteness" class="mt-2 block text-3xl font-black text-gold-300">--</strong><p class="mt-2 text-sm text-white/58">球队强度与手动变量覆盖</p></article>
+          </div>
+        </div>
+        <div class="mt-5 grid gap-4 lg:grid-cols-2">
+          <div id="recommendations" class="glass rounded-3xl p-5 text-sm leading-6 text-white/68"></div>
+          <div id="freshnessNotes" class="glass rounded-3xl p-5 text-sm leading-6 text-white/68"></div>
+        </div>
+      </section>
+
+      <section id="parameters" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="glass rounded-3xl p-5">
+          <div class="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+            <div>
+              <p class="text-sm font-black uppercase tracking-wide text-gold-300">Admin / Local Controls</p>
+              <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em]">参数面板</h2>
+              <p class="mt-3 text-white/62">调整会实时影响本地预测，不写回服务器。适合模拟伤停、旅途、状态变化。</p>
+            </div>
+            <button id="openDrawerBtn" class="rounded-2xl bg-gold-500 px-6 py-4 text-sm font-black text-graphite-950 shadow-gold" type="button">打开参数侧栏</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="grid gap-5 lg:grid-cols-[1fr_.9fr]">
+          <div class="glass rounded-3xl p-6">
+            <p class="text-sm font-black uppercase tracking-wide text-gold-300">Model & Compliance</p>
+            <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em]">模型说明与免责</h2>
+            <p id="disclaimer" class="mt-4 text-white/68"></p>
+            <p id="banned" class="mt-3 text-white/58"></p>
+          </div>
+          <figure class="overflow-hidden rounded-3xl border border-white/10">
+            <img class="h-full min-h-80 w-full object-cover" src="./assets/model-analytics-2026.png" alt="足球概率模型可视化">
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <div id="drawerOverlay" class="fixed inset-0 z-40 bg-black/55 opacity-0 pointer-events-none transition" aria-hidden="true"></div>
+    <aside id="paramDrawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md translate-x-full overflow-y-auto border-l border-white/10 bg-graphite-900 p-5 shadow-2xl transition duration-300">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-black uppercase tracking-wide text-gold-300">Local Parameters</p>
+          <h2 class="text-2xl font-black">实时因子调整</h2>
+        </div>
+        <button id="closeDrawerBtn" class="rounded-xl border border-white/10 px-3 py-2 font-black" type="button">关闭</button>
+      </div>
+      <div class="mt-5 grid gap-4">
+        <label class="grid gap-2 text-sm font-bold text-white/68">球队 <select id="adminTeam" class="rounded-2xl border border-white/10 bg-black/20 px-4 py-3"></select></label>
+        <label class="grid gap-2 text-sm font-bold text-white/68">进攻 <input id="attack" type="range" min="35" max="99"></label>
+        <label class="grid gap-2 text-sm font-bold text-white/68">防守 <input id="defense" type="range" min="35" max="99"></label>
+        <label class="grid gap-2 text-sm font-bold text-white/68">状态 <input id="form" type="range" min="0" max="1" step="0.01"></label>
+        <label class="grid gap-2 text-sm font-bold text-white/68">伤停 <input id="injuries" type="range" min="0" max="0.8" step="0.01"></label>
+        <label class="grid gap-2 text-sm font-bold text-white/68">休息天数 <input id="restDays" type="range" min="0" max="14"></label>
+        <label class="grid gap-2 text-sm font-bold text-white/68">旅行 km <input id="travelKm" type="range" min="0" max="9000"></label>
+        <div class="mt-4 grid grid-cols-2 gap-3">
+          <button id="resetParamsBtn" class="rounded-2xl border border-white/10 px-4 py-3 text-sm font-black" type="button">Reset</button>
+          <button id="applyParamsBtn" class="rounded-2xl bg-gold-500 px-4 py-3 text-sm font-black text-graphite-950" type="button">应用</button>
+        </div>
+        <p id="adminStatus" class="text-sm text-white/58"></p>
+      </div>
+    </aside>
+
+    <footer class="relative z-10 border-t border-white/10 px-4 py-8 text-center text-sm text-white/45">
+      Sources: FIFA tournament pages and FIFA ranking snapshots. ScoreLab is for analysis and entertainment, not betting advice.
+    </footer>
+
+    <script src="./app-static.js?v=20260603-2" type="module"></script>
+  </body>
+</html>
