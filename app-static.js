@@ -175,6 +175,119 @@ function renderGroups() {
     .join('');
 }
 
+function tournamentStrength(team) {
+  const rating = (team.rating - 1450) / 210;
+  const attack = (team.attack - 70) / 16;
+  const defense = (team.defense - 70) / 16;
+  const form = (team.form - 0.5) * 1.45;
+  const host = team.host ? 0.22 : 0;
+  const injury = -team.injuries * 0.58;
+  const travel = -Math.min(0.22, team.travelKm / 28000);
+  const rest = Math.min(0.12, Math.max(-0.08, (team.restDays - 6) / 55));
+  return rating * 0.48 + attack * 0.2 + defense * 0.18 + form * 0.11 + host + injury + travel + rest;
+}
+
+function normalizeProbabilities(items, key = 'score') {
+  const expScores = items.map((item) => Math.exp(item[key]));
+  const total = expScores.reduce((sum, value) => sum + value, 0);
+  return items.map((item, index) => ({ ...item, probability: expScores[index] / total }));
+}
+
+function buildOutrightForecast() {
+  const rated = state.teams.map((team) => ({
+    team,
+    score: tournamentStrength(team)
+  }));
+
+  const champions = normalizeProbabilities(rated, 'score')
+    .map((item) => ({
+      ...item,
+      probability: Math.min(0.34, item.probability * 1.18)
+    }));
+  const championTotal = champions.reduce((sum, item) => sum + item.probability, 0);
+  const championBoard = champions
+    .map((item) => ({ ...item, probability: item.probability / championTotal }))
+    .sort((a, b) => b.probability - a.probability);
+
+  const runnerUps = normalizeProbabilities(
+    rated.map((item) => ({ ...item, score: item.score * 0.88 + 0.14 * (1 - Math.abs(item.score)) })),
+    'score'
+  ).sort((a, b) => b.probability - a.probability);
+  const runnerUpById = new Map(runnerUps.map((item) => [item.team.id, item.probability]));
+
+  const pairs = [];
+  for (let i = 0; i < championBoard.length; i += 1) {
+    for (let j = i + 1; j < championBoard.length; j += 1) {
+      const a = championBoard[i];
+      const b = championBoard[j];
+      const confederationPenalty = a.team.confederation === b.team.confederation ? 0.92 : 1;
+      pairs.push({
+        home: a.team,
+        away: b.team,
+        probability: (a.probability * runnerUpById.get(b.team.id) + b.probability * runnerUpById.get(a.team.id)) * confederationPenalty
+      });
+    }
+  }
+  const pairTotal = pairs.reduce((sum, pair) => sum + pair.probability, 0);
+
+  return {
+    champions: championBoard,
+    runnerUps,
+    finalPairs: pairs
+      .map((pair) => ({ ...pair, probability: pair.probability / pairTotal }))
+      .sort((a, b) => b.probability - a.probability)
+  };
+}
+
+function renderProbabilityRows(host, rows, options = {}) {
+  const max = Math.max(...rows.map((row) => row.probability));
+  host.innerHTML = rows
+    .map((row, index) => {
+      const team = row.team;
+      const bar = Math.max(4, (row.probability / max) * 100);
+      const medal = index === 0 ? 'bg-gold-500 text-graphite-950' : 'bg-white/8 text-white/55';
+      return `
+        <article class="rounded-2xl border border-white/10 bg-black/18 p-3 transition hover:-translate-y-0.5 hover:border-gold-500/50">
+          <div class="flex items-center gap-3">
+            <span class="grid h-8 w-8 place-items-center rounded-xl ${medal} text-xs font-black">${index + 1}</span>
+            <span class="text-2xl">${flag(team)}</span>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center justify-between gap-3">
+                <strong class="truncate">${team.name}</strong>
+                <span class="font-black ${options.accent === 'cyan' ? 'text-cyan-400' : 'text-gold-300'}">${percent(row.probability)}</span>
+              </div>
+              <div class="mt-2 h-2 overflow-hidden rounded-full bg-white/10">
+                <i class="block h-full rounded-full ${options.accent === 'cyan' ? 'bg-gradient-to-r from-cyan-400 to-gold-500' : 'bg-gradient-to-r from-gold-500 to-cyan-400'}" style="width:${bar}%"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    })
+    .join('');
+}
+
+function renderOutrights() {
+  const forecast = buildOutrightForecast();
+  const topChampion = forecast.champions[0];
+  const topPair = forecast.finalPairs[0];
+  $('#outrightSnapshot').textContent = `${state.modelConfig.version} · ${state.accuracy.predictionFreshness.checkedAt}`;
+  $('#championPick').textContent = `${flag(topChampion.team)} ${topChampion.team.name} 最被看好`;
+  $('#championPickProb').textContent = percent(topChampion.probability);
+  $('#finalPairTop').textContent = `${topPair.home.code} vs ${topPair.away.code} · ${percent(topPair.probability)}`;
+  renderProbabilityRows($('#championBoard'), forecast.champions.slice(0, 10));
+  renderProbabilityRows($('#runnerUpBoard'), forecast.runnerUps.slice(0, 8), { accent: 'cyan' });
+  $('#finalPairBoard').innerHTML = forecast.finalPairs
+    .slice(0, 6)
+    .map((pair) => `
+      <div class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[.035] p-3">
+        <strong class="truncate">${flag(pair.home)} ${pair.home.name} <span class="text-white/32">vs</span> ${flag(pair.away)} ${pair.away.name}</strong>
+        <span class="shrink-0 font-black text-cyan-400">${percent(pair.probability)}</span>
+      </div>
+    `)
+    .join('');
+}
+
 function scorelineGrid(prediction) {
   return prediction.scorelines
     .filter((line) => line.homeGoals <= 4 && line.awayGoals <= 4)
@@ -389,6 +502,7 @@ function applyParameters() {
   $('#adminStatus').textContent = `${team.name} 参数已更新。`;
   renderGroups();
   renderAccuracy();
+  renderOutrights();
   runPrediction();
 }
 
@@ -397,6 +511,7 @@ function resetParameters() {
   state.groups = groupsFromTeams(state.teams);
   hydrateParameterControls();
   renderGroups();
+  renderOutrights();
   runPrediction();
   $('#adminStatus').textContent = '参数已恢复到数据快照。';
 }
@@ -559,6 +674,7 @@ async function init() {
   $('#adminTeam').value = state.homeId;
 
   renderAccuracy();
+  renderOutrights();
   renderGroups();
   hydrateParameterControls();
   setupEvents();
