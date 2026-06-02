@@ -1,0 +1,11 @@
+{
+  "name": "ScoreLab 2026 World Cup Predictor",
+  "short_name": "ScoreLab",
+  "description": "A transparent 2026 World Cup score probability prediction tool.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#070D0A",
+  "theme_color": "#0A3D2E",
+  "lang": "zh-CN",
+  "orientation": "portrait-primary"
+}

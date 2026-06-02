@@ -1,0 +1,8 @@
+[
+  {"id":"bt-001","match":"Argentina vs France 2022 final","homeWin":0.35,"draw":0.29,"awayWin":0.36,"actual":"draw"},
+  {"id":"bt-002","match":"France vs Morocco 2022 semi-final","homeWin":0.56,"draw":0.25,"awayWin":0.19,"actual":"home"},
+  {"id":"bt-003","match":"Argentina vs Croatia 2022 semi-final","homeWin":0.52,"draw":0.27,"awayWin":0.21,"actual":"home"},
+  {"id":"bt-004","match":"Brazil vs Croatia 2022 quarter-final","homeWin":0.61,"draw":0.23,"awayWin":0.16,"actual":"draw"},
+  {"id":"bt-005","match":"Morocco vs Portugal 2022 quarter-final","homeWin":0.24,"draw":0.28,"awayWin":0.48,"actual":"home"},
+  {"id":"bt-006","match":"England vs France 2022 quarter-final","homeWin":0.33,"draw":0.29,"awayWin":0.38,"actual":"away"}
+]

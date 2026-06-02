@@ -1,0 +1,14 @@
+[
+  {"id":"m1","date":"2026-06-11","stage":"Group A","venue":"Mexico City","homeTeamId":"mexico","awayTeamId":"south-africa","source":"FIFA opening match listing"},
+  {"id":"m2","date":"2026-06-12","stage":"Group B","venue":"Toronto","homeTeamId":"canada","awayTeamId":"switzerland","source":"Seed fixture snapshot"},
+  {"id":"m3","date":"2026-06-12","stage":"Group C","venue":"Miami","homeTeamId":"brazil","awayTeamId":"morocco","source":"Seed fixture snapshot"},
+  {"id":"m4","date":"2026-06-12","stage":"Group D","venue":"Los Angeles","homeTeamId":"usa","awayTeamId":"paraguay","source":"Seed fixture snapshot"},
+  {"id":"m5","date":"2026-06-13","stage":"Group E","venue":"New York / New Jersey","homeTeamId":"germany","awayTeamId":"curacao","source":"Seed fixture snapshot"},
+  {"id":"m6","date":"2026-06-13","stage":"Group F","venue":"Dallas","homeTeamId":"netherlands","awayTeamId":"japan","source":"Seed fixture snapshot"},
+  {"id":"m7","date":"2026-06-14","stage":"Group G","venue":"Seattle","homeTeamId":"belgium","awayTeamId":"egypt","source":"Seed fixture snapshot"},
+  {"id":"m8","date":"2026-06-14","stage":"Group H","venue":"Atlanta","homeTeamId":"spain","awayTeamId":"saudi-arabia","source":"Seed fixture snapshot"},
+  {"id":"m9","date":"2026-06-15","stage":"Group I","venue":"Boston","homeTeamId":"france","awayTeamId":"senegal","source":"Seed fixture snapshot"},
+  {"id":"m10","date":"2026-06-15","stage":"Group J","venue":"Kansas City","homeTeamId":"argentina","awayTeamId":"algeria","source":"Seed fixture snapshot"},
+  {"id":"m11","date":"2026-06-16","stage":"Group K","venue":"Mexico City","homeTeamId":"portugal","awayTeamId":"uzbekistan","source":"Seed fixture snapshot"},
+  {"id":"m12","date":"2026-06-16","stage":"Group L","venue":"Dallas","homeTeamId":"england","awayTeamId":"croatia","source":"Seed fixture snapshot"}
+]

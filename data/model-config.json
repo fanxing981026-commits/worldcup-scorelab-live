@@ -1,0 +1,39 @@
+{
+  "version": "scorelab-xg-0.3",
+  "weights": {
+    "rating": 1,
+    "attackDefense": 1,
+    "condition": 1,
+    "homeAdvantage": 1
+  },
+  "sourceStatus": {
+    "ranking": {
+      "name": "FIFA/Coca-Cola Men's World Ranking",
+      "lastOfficialUpdate": "2026-04-01",
+      "nextOfficialUpdate": "2026-06-11",
+      "url": "https://inside.fifa.com/fifa-world-ranking/men",
+      "quality": "official"
+    },
+    "schedule": {
+      "name": "FIFA World Cup 2026 match schedule",
+      "lastChecked": "2026-06-03",
+      "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/match-schedule-fixtures-results-teams-stadiums",
+      "quality": "official"
+    },
+    "manualInputs": {
+      "name": "Attack, defense, form, injuries, rest and travel",
+      "lastChecked": "2026-06-03",
+      "quality": "manual",
+      "note": "Refresh manually before serious pre-match analysis, especially after squad announcements."
+    }
+  },
+  "predictionFreshness": {
+    "checkedAt": "2026-06-03",
+    "status": "latest-public-snapshot",
+    "notes": [
+      "最新公开检查日期：2026-06-03。",
+      "FIFA 男足排名最近官方更新仍为 2026-04-01。",
+      "下一次 FIFA 男足排名官方更新按 2026-06-11 处理；发布后应立即刷新球队 rating。"
+    ]
+  }
+}
