@@ -307,9 +307,16 @@ function renderPrediction(prediction) {
   $('#resultPanel').classList.remove('opacity-0');
   $('#matchTitle').textContent = `${prediction.teams.home} vs ${prediction.teams.away}`;
   $('#confidencePill').textContent = `置信度 ${prediction.confidence}`;
-  $('#homeWin').textContent = percent(prediction.outcome.homeWin);
-  $('#draw').textContent = percent(prediction.outcome.draw);
-  $('#awayWin').textContent = percent(prediction.outcome.awayWin);
+  const probabilityTargets = [
+    ['#homeWin', prediction.outcome.homeWin],
+    ['#draw', prediction.outcome.draw],
+    ['#awayWin', prediction.outcome.awayWin]
+  ];
+  for (const [selector, value] of probabilityTargets) {
+    const node = $(selector);
+    node.dataset.target = String(Math.round(value * 100));
+    node.textContent = '0%';
+  }
   $('#homeWinBar').style.width = percent(prediction.outcome.homeWin);
   $('#drawBar').style.width = percent(prediction.outcome.draw);
   $('#awayWinBar').style.width = percent(prediction.outcome.awayWin);
@@ -326,8 +333,26 @@ function renderPrediction(prediction) {
 
   if (window.gsap) {
     gsap.fromTo('#resultPanel', { y: 20, opacity: 0, filter: 'blur(8px)' }, { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.6, ease: 'back.out(1.25)' });
-    gsap.fromTo('.prob-number', { textContent: 0 }, { duration: 0.65, ease: 'power2.out' });
   }
+  animateProbabilityNumbers();
+}
+
+function animateProbabilityNumbers() {
+  const nodes = $$('.prob-number');
+  const started = performance.now();
+  const duration = 680;
+
+  function tick(now) {
+    const progress = Math.min(1, (now - started) / duration);
+    const eased = 1 - (1 - progress) ** 3;
+    for (const node of nodes) {
+      const target = Number(node.dataset.target || 0);
+      node.textContent = `${Math.round(target * eased)}%`;
+    }
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
 }
 
 function runPrediction() {
