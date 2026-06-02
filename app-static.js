@@ -37,6 +37,12 @@ const state = {
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 const percent = (value) => `${Math.round(value * 100)}%`;
+const precisePercent = (value) => {
+  const amount = value * 100;
+  if (amount < 1) return `${amount.toFixed(2)}%`;
+  if (amount < 10) return `${amount.toFixed(1)}%`;
+  return `${Math.round(amount)}%`;
+};
 
 async function readJson(path) {
   const response = await fetch(path);
@@ -187,8 +193,8 @@ function tournamentStrength(team) {
   return rating * 0.48 + attack * 0.2 + defense * 0.18 + form * 0.11 + host + injury + travel + rest;
 }
 
-function normalizeProbabilities(items, key = 'score') {
-  const expScores = items.map((item) => Math.exp(item[key]));
+function normalizeProbabilities(items, key = 'score', temperature = 1) {
+  const expScores = items.map((item) => Math.exp(item[key] * temperature));
   const total = expScores.reduce((sum, value) => sum + value, 0);
   return items.map((item, index) => ({ ...item, probability: expScores[index] / total }));
 }
@@ -199,19 +205,13 @@ function buildOutrightForecast() {
     score: tournamentStrength(team)
   }));
 
-  const champions = normalizeProbabilities(rated, 'score')
-    .map((item) => ({
-      ...item,
-      probability: Math.min(0.34, item.probability * 1.18)
-    }));
-  const championTotal = champions.reduce((sum, item) => sum + item.probability, 0);
-  const championBoard = champions
-    .map((item) => ({ ...item, probability: item.probability / championTotal }))
+  const championBoard = normalizeProbabilities(rated, 'score', 2.8)
     .sort((a, b) => b.probability - a.probability);
 
   const runnerUps = normalizeProbabilities(
     rated.map((item) => ({ ...item, score: item.score * 0.88 + 0.14 * (1 - Math.abs(item.score)) })),
-    'score'
+    'score',
+    2.35
   ).sort((a, b) => b.probability - a.probability);
   const runnerUpById = new Map(runnerUps.map((item) => [item.team.id, item.probability]));
 
@@ -254,7 +254,7 @@ function renderProbabilityRows(host, rows, options = {}) {
             <div class="min-w-0 flex-1">
               <div class="flex items-center justify-between gap-3">
                 <strong class="truncate">${team.name}</strong>
-                <span class="font-black ${options.accent === 'cyan' ? 'text-cyan-400' : 'text-gold-300'}">${percent(row.probability)}</span>
+                <span class="font-black ${options.accent === 'cyan' ? 'text-cyan-400' : 'text-gold-300'}">${precisePercent(row.probability)}</span>
               </div>
               <div class="mt-2 h-2 overflow-hidden rounded-full bg-white/10">
                 <i class="block h-full rounded-full ${options.accent === 'cyan' ? 'bg-gradient-to-r from-cyan-400 to-gold-500' : 'bg-gradient-to-r from-gold-500 to-cyan-400'}" style="width:${bar}%"></i>
@@ -273,8 +273,8 @@ function renderOutrights() {
   const topPair = forecast.finalPairs[0];
   $('#outrightSnapshot').textContent = `${state.modelConfig.version} · ${state.accuracy.predictionFreshness.checkedAt}`;
   $('#championPick').textContent = `${flag(topChampion.team)} ${topChampion.team.name} 最被看好`;
-  $('#championPickProb').textContent = percent(topChampion.probability);
-  $('#finalPairTop').textContent = `${topPair.home.code} vs ${topPair.away.code} · ${percent(topPair.probability)}`;
+  $('#championPickProb').textContent = precisePercent(topChampion.probability);
+  $('#finalPairTop').textContent = `${topPair.home.code} vs ${topPair.away.code} · ${precisePercent(topPair.probability)}`;
   renderProbabilityRows($('#championBoard'), forecast.champions.slice(0, 10));
   renderProbabilityRows($('#runnerUpBoard'), forecast.runnerUps.slice(0, 8), { accent: 'cyan' });
   $('#finalPairBoard').innerHTML = forecast.finalPairs
@@ -282,7 +282,7 @@ function renderOutrights() {
     .map((pair) => `
       <div class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[.035] p-3">
         <strong class="truncate">${flag(pair.home)} ${pair.home.name} <span class="text-white/32">vs</span> ${flag(pair.away)} ${pair.away.name}</strong>
-        <span class="shrink-0 font-black text-cyan-400">${percent(pair.probability)}</span>
+        <span class="shrink-0 font-black text-cyan-400">${precisePercent(pair.probability)}</span>
       </div>
     `)
     .join('');
