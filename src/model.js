@@ -162,5 +162,6 @@ export function confidenceFor(home, away) {
   }, 0);
   const injuryRisk = (Number(home.injuries || 0) + Number(away.injuries || 0)) / 2;
   if (missing > 1 || injuryRisk > 0.28) return 'medium';
-  return 'high';
+  const verifiedInputs = [home, away].every((team) => team.dataQuality === 'verified');
+  return verifiedInputs ? 'high' : 'medium';
 }

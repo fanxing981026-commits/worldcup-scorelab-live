@@ -1,0 +1,64 @@
+[
+  {
+    "id": "fifa-ranking",
+    "name": "FIFA/Coca-Cola Men's World Ranking",
+    "type": "官方强度基线",
+    "quality": "official",
+    "checkedAt": "2026-06-10",
+    "publishedAt": "2026-04-01",
+    "nextUpdate": "2026-06-11",
+    "cadence": "官方发布日期",
+    "url": "https://inside.fifa.com/fifa-world-ranking/men",
+    "usage": "作为球队长期实力与排名积分基线"
+  },
+  {
+    "id": "fifa-fixtures",
+    "name": "FIFA World Cup 2026 Scores & Fixtures",
+    "type": "官方赛程与赛果",
+    "quality": "official",
+    "checkedAt": "2026-06-10",
+    "cadence": "比赛期间每小时",
+    "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/scores-fixtures",
+    "usage": "更新比赛状态、比分和后续预测输入"
+  },
+  {
+    "id": "fifa-standings",
+    "name": "FIFA World Cup 2026 Standings",
+    "type": "官方积分榜",
+    "quality": "official",
+    "checkedAt": "2026-06-10",
+    "cadence": "比赛期间每小时",
+    "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings",
+    "usage": "开赛后替换模拟积分并更新晋级概率"
+  },
+  {
+    "id": "fifa-squads",
+    "name": "FIFA World Cup 2026 Confirmed Squads",
+    "type": "官方最终名单",
+    "quality": "official",
+    "checkedAt": "2026-06-10",
+    "publishedAt": "2026-06-02",
+    "cadence": "首场赛前每日",
+    "url": "https://inside.fifa.com/organisation/media-releases/world-cup-2026-48-squads-confirmed",
+    "usage": "确认参赛名单与允许的严重伤病替换窗口"
+  },
+  {
+    "id": "fifa-warmups",
+    "name": "FIFA Pre-World Cup Warm-up Results",
+    "type": "官方近期赛果",
+    "quality": "official",
+    "checkedAt": "2026-06-10",
+    "cadence": "每日",
+    "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/pre-tournament-warm-up-results-fixtures-scorers",
+    "usage": "用于近期状态校准"
+  },
+  {
+    "id": "manual-team-inputs",
+    "name": "ScoreLab Manual Team Inputs",
+    "type": "人工估算",
+    "quality": "manual",
+    "checkedAt": "2026-06-10",
+    "cadence": "有可靠证据时更新",
+    "usage": "攻防、伤停、休息和旅行；未逐条验证时降低模型权重"
+  }
+]

@@ -1,9 +1,9 @@
 {
-  "version": "scorelab-xg-0.3",
+  "version": "scorelab-xg-0.4",
   "weights": {
     "rating": 1,
-    "attackDefense": 1,
-    "condition": 1,
+    "attackDefense": 0.65,
+    "condition": 0.35,
     "homeAdvantage": 1
   },
   "sourceStatus": {
@@ -16,24 +16,25 @@
     },
     "schedule": {
       "name": "FIFA World Cup 2026 match schedule",
-      "lastChecked": "2026-06-09",
+      "lastChecked": "2026-06-10",
       "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/match-schedule-fixtures-results-teams-stadiums",
       "quality": "official"
     },
     "manualInputs": {
       "name": "Attack, defense, form, injuries, rest and travel",
-      "lastChecked": "2026-06-09",
+      "lastChecked": "2026-06-10",
       "quality": "manual",
       "note": "Refresh manually before serious pre-match analysis, especially after squad announcements."
     }
   },
   "predictionFreshness": {
-    "checkedAt": "2026-06-09",
+    "checkedAt": "2026-06-10",
     "status": "latest-public-snapshot",
     "notes": [
-      "最新公开检查日期：2026-06-09。",
+      "最新公开检查日期：2026-06-10。",
       "FIFA 男足排名最近官方更新仍为 2026-04-01。",
-      "下一次 FIFA 男足排名官方更新按 2026-06-11 处理；发布后应立即刷新球队 rating。"
+      "下一次 FIFA 男足排名官方更新为 2026-06-11；发布后立即刷新球队 rating。",
+      "最终 48 队名单已由 FIFA 于 2026-06-02 确认；严重伤病替换可在球队首场比赛前 24 小时发生。"
     ]
   }
 }
