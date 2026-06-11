@@ -46,7 +46,7 @@ export function buildAccuracyReport({ config, backtests, teams }) {
       teamsWithManualInputs: manualCount
     },
     recommendations: [
-      `固定快照日期：${config.predictionFreshness.checkedAt}；网站不会自动吸收之后的排名、比分或名单变化。`,
+      `每日检查官方数据；当前已核验数据快照日期：${config.predictionFreshness.checkedAt}。`,
       '伤停、停赛与预计阵容仍属于低权重人工输入，未逐队验证时不应视为事实。',
       '公开宣称准确率前，应使用至少 300 场近期成年国家队比赛完成独立回测与校准。'
     ]

@@ -115,7 +115,7 @@
           <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#about">关于</a>
         </nav>
         <div class="flex items-center gap-2">
-          <span class="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-white/60">中文 · 固定快照</span>
+          <span class="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-white/60">中文 · 每日更新</span>
         </div>
       </div>
       <nav class="flex gap-1 overflow-x-auto border-t border-white/8 px-4 py-2 text-xs font-black text-white/65 lg:hidden" aria-label="移动端导航">
@@ -138,7 +138,7 @@
           <div class="hero-copy max-w-4xl">
             <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-4 py-2 text-sm font-bold text-gold-300">
               <span class="h-2 w-2 rounded-full bg-cyan-400 shadow-glow"></span>
-              最新公开快照 · 合规透明预测 · 非博彩
+              每日官方数据检查 · 合规透明预测 · 非博彩
             </div>
             <h1 class="font-display text-[clamp(3rem,8vw,7.4rem)] font-black leading-[.9] tracking-[-0.055em]">
               用可解释模型预测 2026 世界杯比分
@@ -275,7 +275,7 @@
           <div>
             <p class="text-sm font-black uppercase tracking-wide text-gold-300">Tournament Outrights</p>
             <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em] sm:text-5xl">冠亚军概率预测</h2>
-            <p class="mt-3 max-w-2xl text-white/62">基于固定的 2026-06-11 数据快照进行简化强度估算。当前未完整模拟淘汰赛签表路径，结果用于比较球队竞争力，不应视为精确夺冠概率。</p>
+            <p class="mt-3 max-w-2xl text-white/62">基于每日更新的数据快照进行简化强度估算。当前未完整模拟淘汰赛签表路径，结果用于比较球队竞争力，不应视为精确夺冠概率。</p>
           </div>
           <span id="outrightSnapshot" class="w-fit rounded-full border border-gold-500/30 bg-gold-500/10 px-4 py-2 text-sm font-black text-gold-300">Loading</span>
         </div>
@@ -319,7 +319,7 @@
           <div>
             <p class="text-sm font-black uppercase tracking-wide text-gold-300">Group Qualification</p>
             <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em]">小组赛晋级预测</h2>
-            <p class="mt-3 max-w-2xl text-white/62">按固定的 2026-06-11 数据快照模拟小组赛，展示预计排名、积分与晋级概率，不再自动跟随赛果变化。</p>
+            <p class="mt-3 max-w-2xl text-white/62">按每日官方数据快照模拟小组赛，展示预计排名、积分与晋级概率；新赛果核验后重新计算。</p>
           </div>
           <div id="groupTabs" class="hidden flex-wrap gap-2 lg:flex"></div>
         </div>
@@ -331,7 +331,7 @@
           <div>
             <p class="text-sm font-black uppercase tracking-wide text-gold-300">Official Fixtures Snapshot</p>
             <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em]">完整赛程</h2>
-            <p class="mt-3 max-w-2xl text-white/62">固定于最后一次官方赛程核验快照，共 104 场。页面显示时间来自 FIFA 赛程页面快照；开赛前请以官方页面为准。</p>
+            <p class="mt-3 max-w-2xl text-white/62">每天核验 FIFA 官方赛程与赛果，当前共 104 场。页面显示时间来自官方赛程；临近开赛请以 FIFA 页面为准。</p>
           </div>
           <a class="w-fit rounded-2xl border border-cyan-400/30 bg-cyan-400/10 px-4 py-3 text-sm font-black text-cyan-400 hover:bg-cyan-400/15" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/scores-fixtures" target="_blank" rel="noreferrer">查看 FIFA 官方赛程</a>
         </div>
@@ -358,7 +358,7 @@
           <div>
             <p class="text-sm font-black uppercase tracking-wide text-gold-300">Accuracy Dashboard</p>
             <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em]">准确性仪表盘</h2>
-            <p class="mt-4 max-w-xl text-white/64">显示模型固定使用的数据快照、有限回测结果、字段覆盖情况，以及尚未验证的数据限制。</p>
+            <p class="mt-4 max-w-xl text-white/64">显示模型每日核验的数据快照、有限回测结果、字段覆盖情况，以及尚未验证的数据限制。</p>
           </div>
           <div class="grid gap-3 sm:grid-cols-2">
             <article class="glass rounded-3xl p-5"><p class="text-sm text-white/50">FIFA 排名日期</p><strong id="rankingFreshness" class="mt-2 block text-3xl font-black text-gold-300">--</strong><p id="rankingNext" class="mt-2 text-sm text-white/58">--</p></article>
@@ -375,9 +375,9 @@
           <div class="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div>
               <p class="text-sm font-black uppercase tracking-wide text-gold-300">Evidence Registry</p>
-              <h3 class="mt-1 text-3xl font-black tracking-[-0.04em]">数据来源与快照状态</h3>
+              <h3 class="mt-1 text-3xl font-black tracking-[-0.04em]">数据来源与更新状态</h3>
             </div>
-            <span class="w-fit rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-2 text-xs font-black text-cyan-400">固定快照 · 官方优先</span>
+            <span class="w-fit rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-2 text-xs font-black text-cyan-400">每日检查 · 官方优先</span>
           </div>
           <div id="sourceRegistry" class="grid gap-3 md:grid-cols-2 xl:grid-cols-3"></div>
         </div>
@@ -389,7 +389,7 @@
             <div>
               <p class="text-sm font-black uppercase tracking-wide text-gold-300">Admin / Local Controls</p>
               <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em]">参数面板</h2>
-              <p class="mt-3 text-white/62">调整只影响当前浏览器中的本地模拟，不更新固定数据快照，也不会写回服务器。</p>
+              <p class="mt-3 text-white/62">调整只影响当前浏览器中的本地模拟，不改写每日官方数据快照，也不会写回服务器。</p>
             </div>
             <button id="openDrawerBtn" class="rounded-2xl bg-gold-500 px-6 py-4 text-sm font-black text-graphite-950 shadow-gold" type="button">打开参数侧栏</button>
           </div>
@@ -440,6 +440,6 @@
       Sources: FIFA tournament pages and FIFA ranking snapshots. ScoreLab is for analysis and entertainment, not betting advice.
     </footer>
 
-    <script src="./app-static-20260611-auditfix.js" type="module"></script>
+    <script src="./app-static-20260611-daily.js" type="module"></script>
   </body>
 </html>

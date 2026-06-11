@@ -9,8 +9,8 @@
   "sourceStatus": {
     "ranking": {
       "name": "FIFA/Coca-Cola Men's World Ranking",
-      "lastOfficialUpdate": "2026-04-01",
-      "nextOfficialUpdate": "待 FIFA 公布",
+      "lastOfficialUpdate": "2026-06-11",
+      "nextOfficialUpdate": "2026-07-20",
       "url": "https://inside.fifa.com/fifa-world-ranking/men",
       "quality": "official"
     },
@@ -46,7 +46,7 @@
     "status": "latest-public-snapshot",
     "notes": [
       "最新公开检查日期：2026-06-11。",
-      "截至 2026-06-11 检查，FIFA 男足排名公开页标题仍为 Latest Men's World Ranking，且可见 Last official update: 01 April 2026；公开页面暂未给出新的官方发布日期。",
+      "截至 2026-06-11 检查，FIFA 男足排名公开页显示 Just updated: 11 June 2026；下一次官方更新为 20 July 2026。球队具体排名与积分仅在成功核验后写入，避免用旧数值冒充新排名。",
       "截至 2026-06-11 检查，FIFA 官方 standings 页面显示 12 个小组均处于 P/W/D/L/GD/Pts 全 0 的开赛前状态，并已展示官方淘汰赛签位框架。",
       "截至 2026-06-11 检查，FIFA 官方 scores-fixtures 页面已展示 104 场完整赛程；本地 matches 数据已从 72 场小组赛扩展为包含淘汰赛官方占位签位的 104 场快照。",
       "FIFA 于 2026-06-02 确认最终 48 队名单；2026-06-11 复核到公开 SquadLists-English.pdf 仍为 Version 1，页脚时间戳更新为 Thursday, 11 June 2026 | 01:09 UTC，未见可证实名单替换。",
