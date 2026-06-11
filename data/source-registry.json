@@ -7,7 +7,7 @@
     "checkedAt": "2026-06-11",
     "publishedAt": "2026-04-01",
     "nextUpdate": "待 FIFA 公布",
-    "cadence": "官方发布日期",
+    "cadence": "固定于 2026-06-11",
     "url": "https://inside.fifa.com/fifa-world-ranking/men",
     "usage": "作为球队长期实力与排名积分基线",
     "note": "2026-06-11 复核时公开页标题仍为 Latest Men's World Ranking，且可见 Last official update: 01 April 2026；页面未给出新的官方发布日期。"
@@ -18,9 +18,9 @@
     "type": "官方赛程与赛果",
     "quality": "official",
     "checkedAt": "2026-06-11",
-    "cadence": "比赛期间每小时",
+    "cadence": "固定于 2026-06-11",
     "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/scores-fixtures",
-    "usage": "同步 104 场 FIFA 官方完整赛程快照与开赛后的比分更新入口；淘汰赛保持官方占位签位。"
+    "usage": "保存 104 场 FIFA 官方完整赛程快照；淘汰赛保持官方占位签位，后续赛果不会自动纳入。"
   },
   {
     "id": "fifa-standings",
@@ -28,9 +28,9 @@
     "type": "官方积分榜",
     "quality": "official",
     "checkedAt": "2026-06-11",
-    "cadence": "比赛期间每小时",
+    "cadence": "固定于 2026-06-11",
     "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings",
-    "usage": "核对开赛后官方积分榜；截至本次检查 12 个小组仍为 0 分起始状态，页面同时给出官方淘汰赛签位框架。"
+    "usage": "固定记录本次核验时的官方积分榜状态；12 个小组均为 0 分起始状态。"
   },
   {
     "id": "fifa-squads",
@@ -39,7 +39,7 @@
     "quality": "official",
     "checkedAt": "2026-06-11",
     "publishedAt": "2026-06-02",
-    "cadence": "首场赛前每日",
+    "cadence": "固定于 2026-06-11",
     "url": "https://inside.fifa.com/organisation/media-releases/world-cup-2026-48-squads-confirmed",
     "usage": "确认参赛名单与允许的严重伤病替换窗口",
     "note": "2026-06-11 复核到公开 SquadLists-English.pdf 仍为 Version 1，页脚时间戳更新为 Thursday, 11 June 2026 | 01:09 UTC；未见可证实名单替换。"
@@ -50,7 +50,7 @@
     "type": "官方近期赛果",
     "quality": "official",
     "checkedAt": "2026-06-11",
-    "cadence": "每日",
+    "cadence": "固定于 2026-06-11",
     "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/pre-tournament-warm-up-results-fixtures-scorers",
     "usage": "用于近期 form 低权重校准；不直接改写攻防或伤停",
     "publishedAt": "2026-06-07",
@@ -62,7 +62,7 @@
     "type": "人工估算",
     "quality": "manual",
     "checkedAt": "2026-06-11",
-    "cadence": "有可靠证据时更新",
+    "cadence": "固定于 2026-06-11",
     "usage": "仅保留伤停、休息和旅行等人工低权重输入；本次未人工改写攻防评分，且未引入任何非官方赛果。"
   }
 ]

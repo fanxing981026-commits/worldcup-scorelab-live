@@ -34,11 +34,6 @@ export function summarizeCalibration(samples) {
 
 export function buildAccuracyReport({ config, backtests, teams }) {
   const manualCount = teams.filter((team) => team.updatedAt || team.form !== undefined || team.injuries !== undefined).length;
-  const rankingUpdateLabel = config.sourceStatus.ranking.nextOfficialUpdate;
-  const rankingRecommendation =
-    /^\d{4}-\d{2}-\d{2}$/.test(rankingUpdateLabel) && rankingUpdateLabel > config.predictionFreshness.checkedAt
-      ? `Refresh FIFA ranking points after the ${rankingUpdateLabel} official update.`
-      : 'Refresh FIFA ranking points once FIFA publishes the next official ranking update.';
   return {
     modelVersion: config.version,
     weights: config.weights,
@@ -51,9 +46,9 @@ export function buildAccuracyReport({ config, backtests, teams }) {
       teamsWithManualInputs: manualCount
     },
     recommendations: [
-      rankingRecommendation,
-      'Update injuries, suspensions and expected lineups within 24 hours of each match.',
-      'Backtest model weights against at least 300 recent senior international matches before public accuracy claims.'
+      `固定快照日期：${config.predictionFreshness.checkedAt}；网站不会自动吸收之后的排名、比分或名单变化。`,
+      '伤停、停赛与预计阵容仍属于低权重人工输入，未逐队验证时不应视为事实。',
+      '公开宣称准确率前，应使用至少 300 场近期成年国家队比赛完成独立回测与校准。'
     ]
   };
 }
