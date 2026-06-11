@@ -269,7 +269,7 @@ async function init() {
   fillTeamSelect($('#homeTeam'), 'france');
   fillTeamSelect($('#awayTeam'), 'canada');
   fillTeamSelect($('#adminTeam'), 'canada');
-  $('#heroModelStatus').textContent = `${boot.groups.length} groups · ${boot.matches.length} seeded fixtures`;
+  $('#heroModelStatus').textContent = `${boot.groups.length} groups · ${boot.matches.length} official fixtures`;
   $('#heroFreshness').textContent = `数据检查：${boot.accuracy.predictionFreshness.checkedAt} · 下一次 FIFA 排名：${boot.accuracy.sourceStatus.ranking.nextOfficialUpdate}`;
   $('#disclaimer').textContent = boot.compliance.disclaimer;
   $('#banned').textContent = boot.compliance.banned;

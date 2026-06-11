@@ -32,8 +32,7 @@ const state = {
   awayId: 'canada',
   prediction: null,
   goalsChart: null,
-  lang: 'zh',
-  scheduleFilter: 'all'
+  lang: 'zh'
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -433,61 +432,6 @@ function renderOutrights() {
     .join('');
 }
 
-function scheduleTeam(match, side) {
-  const teamId = match[`${side}TeamId`];
-  if (teamId) {
-    const team = teamById(teamId);
-    return team ? `${flag(team)} ${team.name}` : teamId;
-  }
-  return match[`${side}Slot`] || '待定';
-}
-
-function isGroupMatch(match) {
-  return match.round === 'First Stage' || match.stage?.startsWith('Group ');
-}
-
-function renderSchedule() {
-  const query = $('#scheduleSearch').value.trim().toLowerCase();
-  const filtered = state.matches.filter((match) => {
-    if (state.scheduleFilter === 'groups' && !isGroupMatch(match)) return false;
-    if (state.scheduleFilter === 'knockout' && isGroupMatch(match)) return false;
-    const haystack = [
-      match.date,
-      match.stage,
-      match.round,
-      match.venue,
-      match.city,
-      scheduleTeam(match, 'home'),
-      scheduleTeam(match, 'away')
-    ].join(' ').toLowerCase();
-    return haystack.includes(query);
-  });
-
-  $('#scheduleSummary').textContent = `显示 ${filtered.length} / ${state.matches.length} 场 · 数据快照 ${state.modelConfig.predictionFreshness.checkedAt}`;
-  $('#scheduleList').innerHTML = filtered
-    .map((match) => {
-      const groupMatch = isGroupMatch(match);
-      return `
-        <article class="rounded-2xl border border-white/10 bg-black/18 p-4 transition hover:-translate-y-0.5 hover:border-gold-500/45">
-          <div class="flex items-center justify-between gap-3 text-xs font-black">
-            <span class="${groupMatch ? 'text-gold-300' : 'text-cyan-400'}">${match.stage}</span>
-            <span class="text-white/42">${match.date} · ${match.kickoffLocal || '时间待定'}</span>
-          </div>
-          <div class="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-            <strong class="text-right">${scheduleTeam(match, 'home')}</strong>
-            <span class="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-black text-white/45">VS</span>
-            <strong>${scheduleTeam(match, 'away')}</strong>
-          </div>
-          <div class="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs font-bold text-white/42">
-            <span>${match.venue || '场地待定'}</span>
-            <span>${match.city || ''}</span>
-          </div>
-        </article>
-      `;
-    })
-    .join('');
-}
-
 function scorelineGrid(prediction) {
   return prediction.scorelines
     .filter((line) => line.homeGoals <= 4 && line.awayGoals <= 4)
@@ -841,19 +785,6 @@ function setupEvents() {
     state.lang = state.lang === 'zh' ? 'en' : 'zh';
     $('#langToggle').textContent = state.lang === 'zh' ? '中 / EN' : 'EN / 中';
   });
-  $('#scheduleSearch').addEventListener('input', renderSchedule);
-  $('#scheduleFilters').addEventListener('click', (event) => {
-    const button = event.target.closest('[data-schedule-filter]');
-    if (!button) return;
-    state.scheduleFilter = button.dataset.scheduleFilter;
-    $$('.schedule-filter').forEach((item) => {
-      const active = item === button;
-      item.className = active
-        ? 'schedule-filter rounded-xl bg-gold-500 px-4 py-2 text-sm font-black text-graphite-950'
-        : 'schedule-filter rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-black text-white/70';
-    });
-    renderSchedule();
-  });
 }
 
 function setupInitialAnimation() {
@@ -894,7 +825,6 @@ async function init() {
   renderAccuracy();
   renderOutrights();
   renderGroups();
-  renderSchedule();
   hydrateParameterControls();
   setupEvents();
   setupCanvasBackground();

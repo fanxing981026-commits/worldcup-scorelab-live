@@ -11,7 +11,7 @@
     <meta property="og:description" content="Professional, transparent and compliant score probability forecasting for the 2026 Canada/Mexico/USA World Cup.">
     <meta property="og:image" content="./assets/scorelab-hero-2026.png">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="manifest" href="./manifest.json?v=20260603-4">
+    <link rel="manifest" href="./manifest.json?v=20260611-1">
     <script>
       tailwind = {
         config: {
@@ -109,6 +109,7 @@
           <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#predictor">预测器</a>
           <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#outrights">冠亚军</a>
           <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#groups">分组</a>
+          <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#schedule">赛程</a>
           <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#accuracy">准确性</a>
           <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#parameters">参数</a>
           <a class="rounded-xl px-3 py-2 hover:bg-white/8" href="#about">关于</a>
@@ -316,6 +317,32 @@
         <div id="groupGrid" class="grid gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
       </section>
 
+      <section id="schedule" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="mb-6 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+          <div>
+            <p class="text-sm font-black uppercase tracking-wide text-gold-300">Official Fixtures Snapshot</p>
+            <h2 class="mt-2 font-display text-4xl font-black tracking-[-0.04em]">完整赛程</h2>
+            <p class="mt-3 max-w-2xl text-white/62">固定于最后一次官方赛程核验快照，共 104 场。页面显示时间来自 FIFA 赛程页面快照；开赛前请以官方页面为准。</p>
+          </div>
+          <a class="w-fit rounded-2xl border border-cyan-400/30 bg-cyan-400/10 px-4 py-3 text-sm font-black text-cyan-400 hover:bg-cyan-400/15" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/scores-fixtures" target="_blank" rel="noreferrer">查看 FIFA 官方赛程</a>
+        </div>
+        <div class="glass rounded-3xl p-4">
+          <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div id="scheduleFilters" class="flex flex-wrap gap-2">
+              <button class="schedule-filter rounded-xl bg-gold-500 px-4 py-2 text-sm font-black text-graphite-950" type="button" data-schedule-filter="all">全部</button>
+              <button class="schedule-filter rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-black text-white/70" type="button" data-schedule-filter="groups">小组赛</button>
+              <button class="schedule-filter rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-black text-white/70" type="button" data-schedule-filter="knockout">淘汰赛</button>
+            </div>
+            <label class="flex items-center gap-3 text-sm font-bold text-white/55">
+              搜索
+              <input id="scheduleSearch" class="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-2 text-white outline-none focus:border-gold-500/60 lg:w-64" placeholder="球队 / 场地 / 组别">
+            </label>
+          </div>
+          <p id="scheduleSummary" class="mt-4 text-sm font-bold text-white/48"></p>
+          <div id="scheduleList" class="mt-4 grid gap-3 lg:grid-cols-2"></div>
+        </div>
+      </section>
+
       <section id="accuracy" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
           <div>
@@ -340,7 +367,7 @@
               <p class="text-sm font-black uppercase tracking-wide text-gold-300">Evidence Registry</p>
               <h3 class="mt-1 text-3xl font-black tracking-[-0.04em]">数据来源与更新状态</h3>
             </div>
-            <span class="w-fit rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-2 text-xs font-black text-cyan-400">准实时检查 · 官方优先</span>
+            <span class="w-fit rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-2 text-xs font-black text-cyan-400">固定快照 · 官方优先</span>
           </div>
           <div id="sourceRegistry" class="grid gap-3 md:grid-cols-2 xl:grid-cols-3"></div>
         </div>
@@ -403,6 +430,6 @@
       Sources: FIFA tournament pages and FIFA ranking snapshots. ScoreLab is for analysis and entertainment, not betting advice.
     </footer>
 
-    <script src="./app-static-20260610-evidence.js" type="module"></script>
+    <script src="./app-static-20260611-schedule.js" type="module"></script>
   </body>
 </html>

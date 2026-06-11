@@ -34,6 +34,11 @@ export function summarizeCalibration(samples) {
 
 export function buildAccuracyReport({ config, backtests, teams }) {
   const manualCount = teams.filter((team) => team.updatedAt || team.form !== undefined || team.injuries !== undefined).length;
+  const rankingUpdateLabel = config.sourceStatus.ranking.nextOfficialUpdate;
+  const rankingRecommendation =
+    /^\d{4}-\d{2}-\d{2}$/.test(rankingUpdateLabel) && rankingUpdateLabel > config.predictionFreshness.checkedAt
+      ? `Refresh FIFA ranking points after the ${rankingUpdateLabel} official update.`
+      : 'Refresh FIFA ranking points once FIFA publishes the next official ranking update.';
   return {
     modelVersion: config.version,
     weights: config.weights,
@@ -46,7 +51,7 @@ export function buildAccuracyReport({ config, backtests, teams }) {
       teamsWithManualInputs: manualCount
     },
     recommendations: [
-      `Refresh FIFA ranking points after the ${config.sourceStatus.ranking.nextOfficialUpdate} official update.`,
+      rankingRecommendation,
       'Update injuries, suspensions and expected lineups within 24 hours of each match.',
       'Backtest model weights against at least 300 recent senior international matches before public accuracy claims.'
     ]

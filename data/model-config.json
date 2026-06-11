@@ -10,31 +10,47 @@
     "ranking": {
       "name": "FIFA/Coca-Cola Men's World Ranking",
       "lastOfficialUpdate": "2026-04-01",
-      "nextOfficialUpdate": "2026-06-11",
+      "nextOfficialUpdate": "待 FIFA 公布",
       "url": "https://inside.fifa.com/fifa-world-ranking/men",
       "quality": "official"
     },
     "schedule": {
-      "name": "FIFA World Cup 2026 match schedule",
-      "lastChecked": "2026-06-10",
-      "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/match-schedule-fixtures-results-teams-stadiums",
+      "name": "FIFA World Cup 2026 Scores & Fixtures",
+      "lastChecked": "2026-06-11",
+      "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/scores-fixtures",
       "quality": "official"
     },
     "manualInputs": {
       "name": "Attack, defense, form, injuries, rest and travel",
-      "lastChecked": "2026-06-10",
+      "lastChecked": "2026-06-11",
       "quality": "manual",
-      "note": "Refresh manually before serious pre-match analysis, especially after squad announcements."
+      "note": "Attack, defense, injuries, rest and travel remain low-weight manual inputs; current form values come from the latest official warm-up result per team, and this check refreshed England, Portugal and Algeria from the official 10 June warm-up results."
+    },
+    "standings": {
+      "name": "FIFA World Cup 2026 Standings",
+      "lastChecked": "2026-06-11",
+      "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings",
+      "quality": "official"
+    },
+    "warmups": {
+      "name": "FIFA pre-tournament warm-up results",
+      "lastChecked": "2026-06-11",
+      "publishedAt": "2026-06-07",
+      "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/pre-tournament-warm-up-results-fixtures-scorers",
+      "quality": "official",
+      "note": "Official article still shows Published 7 Jun 2026, but the live page now includes 10 June results including England 3-0 Costa Rica, Portugal 2-1 Nigeria and Bolivia 0-4 Algeria."
     }
   },
   "predictionFreshness": {
-    "checkedAt": "2026-06-10",
+    "checkedAt": "2026-06-11",
     "status": "latest-public-snapshot",
     "notes": [
-      "最新公开检查日期：2026-06-10。",
-      "FIFA 男足排名最近官方更新仍为 2026-04-01。",
-      "下一次 FIFA 男足排名官方更新为 2026-06-11；发布后立即刷新球队 rating。",
-      "最终 48 队名单已由 FIFA 于 2026-06-02 确认；严重伤病替换可在球队首场比赛前 24 小时发生。"
+      "最新公开检查日期：2026-06-11。",
+      "截至 2026-06-11 检查，FIFA 男足排名公开页标题仍为 Latest Men's World Ranking，且可见 Last official update: 01 April 2026；公开页面暂未给出新的官方发布日期。",
+      "截至 2026-06-11 检查，FIFA 官方 standings 页面显示 12 个小组均处于 P/W/D/L/GD/Pts 全 0 的开赛前状态，并已展示官方淘汰赛签位框架。",
+      "截至 2026-06-11 检查，FIFA 官方 scores-fixtures 页面已展示 104 场完整赛程；本地 matches 数据已从 72 场小组赛扩展为包含淘汰赛官方占位签位的 104 场快照。",
+      "FIFA 于 2026-06-02 确认最终 48 队名单；2026-06-11 复核到公开 SquadLists-English.pdf 仍为 Version 1，页脚时间戳更新为 Thursday, 11 June 2026 | 01:09 UTC，未见可证实名单替换。",
+      "FIFA 官方热身赛文章在 2026-06-11 检查时已纳入 10 June 赛果；据 warmups.json 既定公式，England 的 form 从 0.68 调整为 0.69，Portugal 保持 0.69 但 latest-form source 更新为 Portugal 2-1 Nigeria，Algeria 则依据 Bolivia 0-4 Algeria 从 0.60 调整为 0.61。"
     ]
   }
 }
