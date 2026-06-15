@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-06-11",
+  "checkedAt": "2026-06-15",
   "publishedAt": "2026-06-07",
   "sourceUrl": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/pre-tournament-warm-up-results-fixtures-scorers",
   "derivation": "Latest official warm-up result only. Form delta = outcome weight (+0.012 for win / -0.012 for loss / 0 for draw) plus 0.002 per goal of margin capped at 2 goals; rounded to 2 decimals and clamped to [0,1]. No attack, defense, injury or score data were invented.",
@@ -524,5 +524,6 @@
       "delta": -0.014,
       "updatedForm": 0.54
     }
-  ]
+  ],
+  "note": "2026-06-15 复核 FIFA 官方热身赛文章时，公开页仍停留在 7 June 发布版本并以 10 June 为文内最新已列赛果；未见新增 11-15 June 的官方热身赛条目，因此 warmups.json 未新增结果，也未据此改写任何球队参数。"
 }

@@ -4,65 +4,65 @@
     "name": "FIFA/Coca-Cola Men's World Ranking",
     "type": "官方强度基线",
     "quality": "official",
-    "checkedAt": "2026-06-11",
+    "checkedAt": "2026-06-15",
     "publishedAt": "2026-06-11",
     "nextUpdate": "2026-07-20",
     "cadence": "每日检查官方发布日期",
     "url": "https://inside.fifa.com/fifa-world-ranking/men",
     "usage": "作为球队长期实力与排名积分基线",
-    "note": "2026-06-11 官方页显示 Just updated: 11 June 2026，下一次官方更新为 20 July 2026；具体球队排名与积分仅在成功核验后写入。"
+    "note": "2026-06-15 复核 men ranking 官方页，仍显示 Last official update: 11 June 2026 / Next official update: 20 July 2026；未见新的男足正式发布日期，因此球队排名与积分基线维持 11 June 官方发布值。"
   },
   {
     "id": "fifa-fixtures",
     "name": "FIFA World Cup 2026 Scores & Fixtures",
     "type": "官方赛程与赛果",
     "quality": "official",
-    "checkedAt": "2026-06-11",
+    "checkedAt": "2026-06-15",
     "cadence": "每日检查",
     "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/scores-fixtures",
-    "usage": "每日同步 FIFA 官方赛程与已公布赛果；当前保存 104 场完整赛程，淘汰赛保持官方占位签位。"
+    "usage": "每日同步 FIFA 官方赛程与已公布赛果；当前已写入 2026-06-15 前完成的前 12 场小组赛官方结果，其余比赛继续保留官方赛程与占位签位。"
   },
   {
     "id": "fifa-standings",
     "name": "FIFA World Cup 2026 Standings",
     "type": "官方积分榜",
     "quality": "official",
-    "checkedAt": "2026-06-11",
+    "checkedAt": "2026-06-15",
     "cadence": "每日检查",
     "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings",
-    "usage": "每日同步官方积分榜状态；当前 12 个小组均为 0 分起始状态。"
+    "usage": "每日同步官方积分榜状态；截至 2026-06-15，Group A-D 与 E-F 已进入开赛后状态，组内排序以 FIFA standings 页面与已公布官方赛果交叉复核。"
   },
   {
     "id": "fifa-squads",
     "name": "FIFA World Cup 2026 Confirmed Squads",
     "type": "官方最终名单",
     "quality": "official",
-    "checkedAt": "2026-06-11",
+    "checkedAt": "2026-06-15",
     "publishedAt": "2026-06-02",
     "cadence": "每日检查",
     "url": "https://inside.fifa.com/organisation/media-releases/world-cup-2026-48-squads-confirmed",
     "usage": "确认参赛名单与允许的严重伤病替换窗口",
-    "note": "2026-06-11 复核到公开 SquadLists-English.pdf 仍为 Version 1，页脚时间戳更新为 Thursday, 11 June 2026 | 01:09 UTC；未见可证实名单替换。"
+    "note": "2026-06-15 复核 2026-06-02 官方 confirmed squads 公告及 related Inside FIFA 检索，未见可核验的官方名单替换公告，因此继续维持 2026-06-02 名单快照。"
   },
   {
     "id": "fifa-warmups",
     "name": "FIFA Pre-World Cup Warm-up Results",
     "type": "官方近期赛果",
     "quality": "official",
-    "checkedAt": "2026-06-11",
+    "checkedAt": "2026-06-15",
     "cadence": "每日检查",
     "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/pre-tournament-warm-up-results-fixtures-scorers",
     "usage": "用于近期 form 低权重校准；不直接改写攻防或伤停",
     "publishedAt": "2026-06-07",
-    "note": "2026-06-11 检查时，官方文章的 10 June 段落已列出 England 3-0 Costa Rica、Portugal 2-1 Nigeria 和 Bolivia 0-4 Algeria；据 warmups.json 既定公式仅更新受影响球队的 form/source。"
+    "note": "2026-06-15 复核时，FIFA 官方热身赛文章仍以 10 June 为文内最新已列赛果，未见新增 11-15 June 官方热身赛条目；因此 warmups.json 未新增结果，球队近期 form 改动仅来自世界杯正赛官方赛果。"
   },
   {
     "id": "manual-team-inputs",
     "name": "ScoreLab Manual Team Inputs",
     "type": "人工估算",
     "quality": "manual",
-    "checkedAt": "2026-06-11",
+    "checkedAt": "2026-06-15",
     "cadence": "有官方证据时每日复核",
-    "usage": "仅保留伤停、休息和旅行等人工低权重输入；本次未人工改写攻防评分，且未引入任何非官方赛果。"
+    "usage": "仅保留伤停、休息和旅行等人工低权重输入；2026-06-15 复核后仅依据 FIFA 官方世界杯赛果刷新 form，不人工改写 attack、defense、injuries 或虚构伤停。"
   }
 ]

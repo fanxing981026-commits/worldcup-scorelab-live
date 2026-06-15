@@ -9,13 +9,13 @@
     "rating": 1681.03,
     "attack": 80,
     "defense": 79,
-    "form": 0.68,
+    "form": 0.7,
     "injuries": 0.05,
     "restDays": 6,
     "travelKm": 50,
     "host": true,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 4 June: Mexico 5-1 Serbia"
+    "formUpdatedAt": "2026-06-12",
+    "formSource": "FIFA World Cup result 12 June: Mexico 2-0 South Africa"
   },
   {
     "id": "south-africa",
@@ -27,12 +27,12 @@
     "rating": 1410,
     "attack": 66,
     "defense": 67,
-    "form": 0.55,
+    "form": 0.53,
     "injuries": 0.07,
     "restDays": 5,
     "travelKm": 1600,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 1 June: South Africa 0-0 Nicaragua"
+    "formUpdatedAt": "2026-06-12",
+    "formSource": "FIFA World Cup result 12 June: Mexico 2-0 South Africa"
   },
   {
     "id": "south-korea",
@@ -48,8 +48,8 @@
     "injuries": 0.06,
     "restDays": 5,
     "travelKm": 2200,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 3 June: Korea Republic 1-0 El Salvador"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 12 June: Korea Republic 2-1 Czechia"
   },
   {
     "id": "czechia",
@@ -61,12 +61,12 @@
     "rating": 1495,
     "attack": 72,
     "defense": 73,
-    "form": 0.6,
+    "form": 0.59,
     "injuries": 0.06,
     "restDays": 5,
     "travelKm": 2100,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 4 June: Czechia 3-1 Guatemala"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 12 June: Korea Republic 2-1 Czechia"
   },
   {
     "id": "canada",
@@ -83,8 +83,8 @@
     "restDays": 6,
     "travelKm": 80,
     "host": true,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 5 June: Canada 1-1 Republic of Ireland"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 13 June: Canada 1-1 Bosnia and Herzegovina"
   },
   {
     "id": "switzerland",
@@ -100,8 +100,8 @@
     "injuries": 0.05,
     "restDays": 5,
     "travelKm": 1700,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Switzerland 1-1 Australia"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 14 June: Qatar 1-1 Switzerland"
   },
   {
     "id": "qatar",
@@ -117,8 +117,8 @@
     "injuries": 0.08,
     "restDays": 5,
     "travelKm": 2100,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Qatar 0-0 El Salvador"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 14 June: Qatar 1-1 Switzerland"
   },
   {
     "id": "bosnia",
@@ -134,8 +134,8 @@
     "injuries": 0.09,
     "restDays": 5,
     "travelKm": 1900,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Panama 1-1 Bosnia and Herzegovina"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 13 June: Canada 1-1 Bosnia and Herzegovina"
   },
   {
     "id": "brazil",
@@ -151,8 +151,8 @@
     "injuries": 0.07,
     "restDays": 6,
     "travelKm": 1200,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Brazil 2-1 Egypt"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 14 June: Brazil 1-1 Morocco"
   },
   {
     "id": "morocco",
@@ -168,8 +168,8 @@
     "injuries": 0.04,
     "restDays": 5,
     "travelKm": 1800,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 7 June: Morocco 1-1 Norway"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 14 June: Brazil 1-1 Morocco"
   },
   {
     "id": "haiti",
@@ -181,12 +181,12 @@
     "rating": 1288,
     "attack": 61,
     "defense": 60,
-    "form": 0.47,
+    "form": 0.46,
     "injuries": 0.09,
     "restDays": 5,
     "travelKm": 900,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 5 June: Haiti 1-2 Peru"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 14 June: Haiti 0-1 Scotland"
   },
   {
     "id": "scotland",
@@ -198,12 +198,12 @@
     "rating": 1470,
     "attack": 70,
     "defense": 72,
-    "form": 0.59,
+    "form": 0.6,
     "injuries": 0.06,
     "restDays": 5,
     "travelKm": 1700,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Bolivia 0-4 Scotland"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 14 June: Haiti 0-1 Scotland"
   },
   {
     "id": "usa",
@@ -215,13 +215,13 @@
     "rating": 1668,
     "attack": 80,
     "defense": 78,
-    "form": 0.59,
+    "form": 0.61,
     "injuries": 0.07,
     "restDays": 6,
     "travelKm": 120,
     "host": true,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: USA 1-2 Germany"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 13 June: USA 4-1 Paraguay"
   },
   {
     "id": "paraguay",
@@ -233,12 +233,12 @@
     "rating": 1430,
     "attack": 68,
     "defense": 70,
-    "form": 0.56,
+    "form": 0.54,
     "injuries": 0.06,
     "restDays": 5,
     "travelKm": 1500,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 5 June: Paraguay 4-0 Nicaragua"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 13 June: USA 4-1 Paraguay"
   },
   {
     "id": "australia",
@@ -250,12 +250,12 @@
     "rating": 1568,
     "attack": 74,
     "defense": 76,
-    "form": 0.6,
+    "form": 0.62,
     "injuries": 0.05,
     "restDays": 5,
     "travelKm": 2600,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Switzerland 1-1 Australia"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 14 June: Australia 2-0 Türkiye"
   },
   {
     "id": "turkiye",
@@ -267,12 +267,12 @@
     "rating": 1562,
     "attack": 78,
     "defense": 74,
-    "form": 0.63,
+    "form": 0.61,
     "injuries": 0.07,
     "restDays": 5,
     "travelKm": 2100,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 7 June: Venezuela 1-2 Türkiye"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 14 June: Australia 2-0 Türkiye"
   },
   {
     "id": "germany",
@@ -284,12 +284,12 @@
     "rating": 1730.37,
     "attack": 85,
     "defense": 82,
-    "form": 0.67,
+    "form": 0.69,
     "injuries": 0.06,
     "restDays": 6,
     "travelKm": 1700,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: USA 1-2 Germany"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 15 June: Germany 7-1 Curaçao"
   },
   {
     "id": "curacao",
@@ -301,12 +301,12 @@
     "rating": 1265,
     "attack": 60,
     "defense": 59,
-    "form": 0.51,
+    "form": 0.49,
     "injuries": 0.08,
     "restDays": 5,
     "travelKm": 850,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Curaçao 4-0 Aruba"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 15 June: Germany 7-1 Curaçao"
   },
   {
     "id": "ivory-coast",
@@ -318,12 +318,12 @@
     "rating": 1500,
     "attack": 76,
     "defense": 73,
-    "form": 0.6,
+    "form": 0.61,
     "injuries": 0.07,
     "restDays": 5,
     "travelKm": 1800,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 4 June: France 1-2 Côte d'Ivoire"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 15 June: Côte d'Ivoire 1-0 Ecuador"
   },
   {
     "id": "ecuador",
@@ -335,12 +335,12 @@
     "rating": 1592,
     "attack": 76,
     "defense": 78,
-    "form": 0.63,
+    "form": 0.62,
     "injuries": 0.05,
     "restDays": 5,
     "travelKm": 1300,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 7 June: Ecuador 3-0 Guatemala"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 15 June: Côte d'Ivoire 1-0 Ecuador"
   },
   {
     "id": "netherlands",
@@ -356,8 +356,8 @@
     "injuries": 0.05,
     "restDays": 6,
     "travelKm": 1700,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 8 June: Netherlands 2-1 Uzbekistan"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 15 June: Netherlands 2-2 Japan"
   },
   {
     "id": "japan",
@@ -373,8 +373,8 @@
     "injuries": 0.04,
     "restDays": 5,
     "travelKm": 2300,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 1 June: Japan 1-0 Iceland"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 15 June: Netherlands 2-2 Japan"
   },
   {
     "id": "tunisia",
@@ -386,12 +386,12 @@
     "rating": 1464,
     "attack": 68,
     "defense": 72,
-    "form": 0.53,
+    "form": 0.51,
     "injuries": 0.07,
     "restDays": 5,
     "travelKm": 1800,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Belgium 5-0 Tunisia"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 15 June: Sweden 5-1 Tunisia"
   },
   {
     "id": "sweden",
@@ -403,12 +403,12 @@
     "rating": 1558,
     "attack": 75,
     "defense": 77,
-    "form": 0.59,
+    "form": 0.61,
     "injuries": 0.06,
     "restDays": 5,
     "travelKm": 1800,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 4 June: Sweden 2-2 Greece"
+    "formUpdatedAt": "2026-06-15",
+    "formSource": "FIFA World Cup result 15 June: Sweden 5-1 Tunisia"
   },
   {
     "id": "belgium",
