@@ -16,42 +16,43 @@
     },
     "schedule": {
       "name": "FIFA World Cup 2026 Scores & Fixtures",
-      "lastChecked": "2026-06-15",
+      "lastChecked": "2026-06-16",
       "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/scores-fixtures",
       "quality": "official"
     },
     "manualInputs": {
       "name": "Attack, defense, form, injuries, rest and travel",
-      "lastChecked": "2026-06-15",
+      "lastChecked": "2026-06-16",
       "quality": "manual",
-      "note": "Attack、defense、injuries、rest 与 travel 继续保持低权重人工输入；2026-06-15 仅按 FIFA 官方世界杯赛果刷新最新 form，不引入任何非官方伤停或比分。"
+      "note": "Attack、defense、injuries、rest 与 travel 继续保持低权重人工输入；2026-06-16 仅按 FIFA 官方世界杯赛果刷新最新 form 来源说明，不引入任何非官方伤停或比分。"
     },
     "standings": {
       "name": "FIFA World Cup 2026 Standings",
-      "lastChecked": "2026-06-15",
+      "lastChecked": "2026-06-16",
       "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings",
       "quality": "official"
     },
     "warmups": {
       "name": "FIFA pre-tournament warm-up results",
-      "lastChecked": "2026-06-15",
+      "lastChecked": "2026-06-16",
       "publishedAt": "2026-06-07",
       "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/pre-tournament-warm-up-results-fixtures-scorers",
       "quality": "official",
-      "note": "官方文章仍显示 Published 7 Jun 2026，且 2026-06-15 复核时文内最新条目仍停留在 10 June，因此未新增热身赛结果。"
+      "note": "官方文章仍显示 Published 7 Jun 2026，且 2026-06-16 复核时文内最新条目仍停留在 10 June，因此未新增热身赛结果。"
     }
   },
   "predictionFreshness": {
-    "checkedAt": "2026-06-15",
+    "checkedAt": "2026-06-16",
     "status": "latest-public-snapshot",
     "notes": [
-      "最新公开检查日期：2026-06-15。",
-      "截至 2026-06-15 复核，FIFA 男足排名 men 页面仍显示 Last official update: 11 June 2026，Next official update: 20 July 2026，因此排名基线继续维持 11 June 官方发布值。",
-      "截至 2026-06-15 检查，FIFA 官方 scores-fixtures 与 match report 来源已确认前 12 场小组赛完赛结果：Mexico 2-0 South Africa、Korea Republic 2-1 Czechia、Canada 1-1 Bosnia and Herzegovina、USA 4-1 Paraguay、Qatar 1-1 Switzerland、Brazil 1-1 Morocco、Scotland 1-0 Haiti、Australia 2-0 Türkiye、Germany 7-1 Curaçao、Netherlands 2-2 Japan、Côte d'Ivoire 1-0 Ecuador、Sweden 5-1 Tunisia。",
-      "截至 2026-06-15 复核，FIFA standings 页面已从仅 Group A 开赛状态推进到多组并行更新；在搜索摘要未完整展开的组别，组内次序以官方赛果按积分、净胜球和进球数推导并与 standings 页交叉检查。",
-      "FIFA 于 2026-06-02 确认最终 48 队名单；2026-06-15 复核公开名单来源时，未见可证实名单替换，因此 squads 相关数据未改写。",
-      "FIFA 官方热身赛文章在 2026-06-15 复核时仍以 10 June 为文内最新已列赛果；未发现新增 11-15 June 官方热身赛条目，因此 warmups.json 未改动。",
-      "依据 warmups.json 既有低权重 form 公式并沿用到世界杯正赛最新官方赛果，本次仅刷新受影响球队的 form：胜 +0.012 加净胜球修正（每球 +0.002，上限 2 球），负向对称，平局为 0；结果四舍五入到 2 位并限制在 [0,1]，未改写 attack、defense、injuries、restDays 或 travelKm。"
+      "最新公开检查日期：2026-06-16。",
+      "截至 2026-06-16 复核，FIFA 男足排名 men 页面仍显示 Last official update: 11 June 2026，Next official update: 20 July 2026，因此排名基线继续维持 11 June 官方发布值。",
+      "截至 2026-06-16 检查，FIFA 官方 scores-fixtures 与 match report 来源已确认前 14 场小组赛完赛结果；本次新增 Spain 0-0 Cabo Verde、Belgium 1-1 Egypt。",
+      "截至 2026-06-16 复核，FIFA standings 页面已反映 Group G/H 首轮平局；组内次序以官方赛果按积分、净胜球和进球数推导并与 standings 页交叉检查。",
+      "FIFA 于 2026-06-02 确认最终 48 队名单；2026-06-16 复核公开名单来源时，未见可证实名单替换，因此 squads 相关数据未改写。",
+      "FIFA 官方热身赛文章在 2026-06-16 复核时仍以 10 June 为文内最新已列赛果；未发现新增 11-16 June 官方热身赛条目，因此 warmups.json 未新增结果。",
+      "依据 warmups.json 既有低权重 form 公式并沿用到世界杯正赛最新官方赛果，平局 delta 为 0；Spain、Cabo Verde、Belgium、Egypt 仅更新 form 来源说明，form 数值、attack、defense、injuries、restDays 与 travelKm 均未改写。",
+      "截至本次检查，Saudi Arabia-Uruguay 与 IR Iran-New Zealand 未写入结果；仅在 FIFA 官方 scores-fixtures 或赛后报告可核验为 FT 后再同步。"
     ]
   }
 }

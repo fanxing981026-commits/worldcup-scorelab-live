@@ -1,3 +1,4 @@
+// Daily static snapshot wired for the 2026-06-13 official-source review.
 import { predictMatch, rankedScorelines } from './src/model.js';
 import { buildAccuracyReport } from './src/accuracy.js';
 

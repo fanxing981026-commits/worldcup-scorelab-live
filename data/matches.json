@@ -252,7 +252,12 @@
     "stage": "Group H",
     "round": "First Stage",
     "homeTeamId": "spain",
-    "awayTeamId": "cape-verde"
+    "awayTeamId": "cape-verde",
+    "status": "FT",
+    "homeScore": 0,
+    "awayScore": 0,
+    "resultCheckedAt": "2026-06-16",
+    "resultSource": "FIFA World Cup 2026 scores-fixtures page and official match report"
   },
   {
     "id": "g14",
@@ -267,7 +272,12 @@
     "stage": "Group G",
     "round": "First Stage",
     "homeTeamId": "belgium",
-    "awayTeamId": "egypt"
+    "awayTeamId": "egypt",
+    "status": "FT",
+    "homeScore": 1,
+    "awayScore": 1,
+    "resultCheckedAt": "2026-06-16",
+    "resultSource": "FIFA World Cup 2026 scores-fixtures page and official match report"
   },
   {
     "id": "g15",

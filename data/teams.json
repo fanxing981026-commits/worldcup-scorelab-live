@@ -424,8 +424,8 @@
     "injuries": 0.06,
     "restDays": 6,
     "travelKm": 1700,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Belgium 5-0 Tunisia"
+    "formUpdatedAt": "2026-06-16",
+    "formSource": "FIFA World Cup result 16 June: Belgium 1-1 Egypt; draw delta 0 under ScoreLab official-result form formula"
   },
   {
     "id": "egypt",
@@ -441,8 +441,8 @@
     "injuries": 0.05,
     "restDays": 5,
     "travelKm": 1900,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Brazil 2-1 Egypt"
+    "formUpdatedAt": "2026-06-16",
+    "formSource": "FIFA World Cup result 16 June: Belgium 1-1 Egypt; draw delta 0 under ScoreLab official-result form formula"
   },
   {
     "id": "iran",
@@ -492,8 +492,8 @@
     "injuries": 0.04,
     "restDays": 6,
     "travelKm": 1600,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 8 June: Peru 1-3 Spain"
+    "formUpdatedAt": "2026-06-16",
+    "formSource": "FIFA World Cup result 16 June: Spain 0-0 Cabo Verde; draw delta 0 under ScoreLab official-result form formula"
   },
   {
     "id": "cape-verde",
@@ -509,8 +509,8 @@
     "injuries": 0.07,
     "restDays": 5,
     "travelKm": 1800,
-    "formUpdatedAt": "2026-06-11",
-    "formSource": "FIFA warm-up result 6 June: Cabo Verde 3-0 Bermuda"
+    "formUpdatedAt": "2026-06-16",
+    "formSource": "FIFA World Cup result 16 June: Spain 0-0 Cabo Verde; draw delta 0 under ScoreLab official-result form formula"
   },
   {
     "id": "saudi-arabia",
